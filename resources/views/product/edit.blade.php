@@ -2,7 +2,7 @@
 @section('title')Добавить продукт @endsection()
 
 @section('main_content')
-    <h1>Добавить продукт</h1>
+    <h1>Add product</h1>
 
     <form method="post" action="{{ route('product.update', $product->id) }}">
         @csrf
@@ -25,14 +25,14 @@
                     value="{{ $tag->id }}">{{ $tag->tag }}</option>
             @endforeach
         </select><br>
-        <input type="text" id="name" name="name" value="{{ $product->name }}" placeholder="Введите название продукта" class="form-control"><br>
-        <input type="text" id="price" name="price" value="{{ $product->price }}"  placeholder="Введите цену продукта" class="form-control"><br>
-        <input type="text" id="sale_price" value="{{ $product->sale_price }}" name="sale_price" placeholder="Распродажа" class="form-control"><br>
-        <input type="text" id="quantity" value="{{ $product->quantity }}" name="quantity" placeholder="Введите количество" class="form-control"><br>
-        <textarea name="description" id="description" value="{{ $product->description }}" cols="30" rows="5" class="form-control" placeholder="Описание продукта"></textarea><br>
+        <input type="text" id="name" name="name" value="{{ $product->name }}" placeholder="Please insert product name" class="form-control"><br>
+        <input type="text" id="price" name="price" value="{{ $product->price }}"  placeholder="Please insert product price" class="form-control"><br>
+        <input type="text" id="sale_price" value="{{ $product->sale_price }}" name="sale_price" placeholder="Sale" class="form-control"><br>
+        <input type="text" id="quantity" value="{{ $product->quantity }}" name="quantity" placeholder="Please insert quantity" class="form-control"><br>
+        <textarea name="description" id="description" value="{{ $product->description }}" cols="30" rows="5" class="form-control" placeholder="Please insert product description"></textarea><br>
         <input class="form-control" id="image" value="{{ $product->image }}" name="image" type="text">
-        <input type="number" id="status" value="{{ $product->status }}" name="status" placeholder="Наличие товара" min="1" max="2" class="form-control"><br>
-        <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        <input type="number" id="status" value="{{ $product->status }}" name="status" placeholder="Stock" min="1" max="2" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
 @endsection()
 
