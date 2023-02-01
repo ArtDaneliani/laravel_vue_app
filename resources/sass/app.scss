@@ -1,0 +1,69 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.container.d-flex.m-auto {
+    flex-wrap: wrap;
+    padding: 0px;
+}
+.row {
+    width: 100%;
+}
+.btn {
+    min-width: 150px;
+}
+.show_tags {
+    padding: 5px;
+    margin: 3px;
+    background: #bcdfda;
+    text-align: center;
+    border-radius: 10px;
+}
+.header.py-3 {
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    //background: #b8d0da;
+}
+.container.content {
+    min-height: calc(100vh - 270px);
+}
+.container.content .form-control {
+    max-width: 30%;
+}
+.upload_img {
+    display: flex;
+    justify-content: space-between;
+}
+.pb-3 {
+    padding: 0px !important;
+}
+nav.mt-2 > a,
+.fs-4 {
+    color: #ffffff;
+    font-weight: bold;
+}
+.prod-item {
+    border: 1px solid #b8d0da;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 10px;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+.prod-item img {
+    min-width: 200px;
+    min-height: 200px;
+    display: block;
+    border: 1px solid #b8d0da85;
+    margin: auto;
+    max-width: 200px;
+    max-height: 200px;
+}
