@@ -39,7 +39,7 @@ class ProductController extends Controller
             'description' => 'string',
             'image' => 'string',
             'status' => 'integer',
-            'category_id' => '',
+            'category_id' => 'required|',
             'tags' => ''
         ]);
         $tags = $data['tags'];
