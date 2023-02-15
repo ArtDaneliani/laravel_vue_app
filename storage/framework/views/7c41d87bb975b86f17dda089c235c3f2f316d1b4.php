@@ -4,7 +4,7 @@
     <h1>Карточка продукта</h1>
     <p><a href="<?php echo e(route('product.index')); ?>">Все продукты</a></p>
     <div class="container">
-        <img src="<?php echo e($product->image); ?>" alt="pic">
+        <img class="card-pic" src="<?php echo e($product->image); ?>" alt="pic">
         <hr>
         <p>Категория: <b><?php echo e($product->category->brand); ?></b></p>
         <hr>

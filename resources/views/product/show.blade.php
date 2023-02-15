@@ -5,7 +5,7 @@
     <h1>Карточка продукта</h1>
     <p><a href="{{ route('product.index') }}">Все продукты</a></p>
     <div class="container">
-        <img src="{{$product->image}}" alt="pic">
+        <img class="card-pic" src="{{$product->image}}" alt="pic">
         <hr>
         <p>Категория: <b>{{ $product->category->brand }}</b></p>
         <hr>
