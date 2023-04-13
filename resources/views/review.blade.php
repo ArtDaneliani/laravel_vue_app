@@ -23,10 +23,11 @@
         <button type="submit" class="btn btn-success">Отправить</button>
     </form>
 
-
-
+    <p></p>
+    @if($reviews)
+    <h5>Все отзывы</h5>
+    @endif
     @foreach($reviews as $el)
-        <h1>Все отзывы</h1>
         <div class="alert alert-warning">
             <p>{{ $el->email }}</p><br>
             <h3>{{ $el->subject }}</h3><br>

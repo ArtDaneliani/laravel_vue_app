@@ -39,6 +39,17 @@ Route::get('review/{id}','DeleteFromDbController@deleteReview');
 
 Route::get('/support', 'SupportController@index')->name('support.index');
 
+
+//TODOs route==================
+Route::get('/todo', 'TodoController@index')->name('todo.index');
+//страница юзера с задачами
+Route::get('/todo/login', 'AuthController@getLogin')->name('user-login');
+//функционал логина/авторизации юзера
+Route::post('/todo/login', 'AuthController@authenticate');
+//=============================
+
+
+
 /*Route::get('/products/delete', 'ProductController@deleteProducts');
 Route::get('/products/first', 'ProductController@firstOrCreate');
 Route::get('/products/update', 'ProductController@updateOrCreate');*/

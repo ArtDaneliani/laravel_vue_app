@@ -3,10 +3,9 @@
 
 
 @section('main_content')
-    <h1>Про нас</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Accusamus amet consequatur dolores harum, inventore iure saepe totam.
-        Architecto dolorem iste,
-        libero nesciunt perferendis placeat quas rerum soluta sunt veniam, voluptas.
-    </p>
+    <h1>О проекте</h1>
+    <hr>
+
+    <h5> <b>Laravel 8 УТП</b> - Учебно-тренировочное приложение на Ларавел 8 с использованием Vue 3.</h5>
+    <h5> Все страницы указанные в меню приложения - примеры созданных УТ работ.</h5>
 @endsection()
