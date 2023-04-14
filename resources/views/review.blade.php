@@ -1,8 +1,8 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')Отзывы @endsection
 
 
-@section('main_content')
+@section('content')
     <h1>Форма добавления отзыва</h1>
 
     @if($errors->any())

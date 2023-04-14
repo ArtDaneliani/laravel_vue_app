@@ -6,6 +6,47 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+main.content.py-4 {
+    min-height: calc(100vh - 260px);
+}
+.navbar.navbar-expand-md.navbar-light {
+    padding-top: 0px;
+    padding-bottom:0px;
+}
+.content.py-4 .card .card-header {
+    display: none;
+}
+.card {
+    border:none;
+}
+input.form-control {
+    background: #ffffff;
+    color: #6e777f;
+}
+.todo-add {
+    width:40%;
+}
+.card-body .btn.btn-link {
+    color: #6e777f;
+}
+.menu-items > a, .nav-item >a,
+.menu-items > a:hover, .nav-item >a:hover
+{
+    color:#ffffff
+}
+.container.header.py-3 {
+    align-items: start;
+}
+.menu-items {
+    border-bottom: 1px #fff solid;
+    height: 100%;
+    width: auto;
+    display: flex;
+}
+.menu-items > a {
+    margin: 0 10px;
+}
+
 
 .container.d-flex.m-auto {
     flex-wrap: wrap;

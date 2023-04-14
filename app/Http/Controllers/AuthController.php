@@ -21,7 +21,8 @@ class AuthController extends Controller {
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('todo.index');
-        } else {
+        }
+        else {
             return redirect()->route('user-login')->withErrors(array('ошибка авторизации'));
         }
 

@@ -16,3 +16,5 @@ class MainController extends Controller
     }
 
 }
+/* уже ненужен этот контроллер
+работает встроенный HomeController */

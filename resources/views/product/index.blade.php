@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')Продукты @endsection()
 
-@section('main_content')
+@section('content')
 {{--    <h2>Загрузить изображения</h2>--}}
 {{--    <h5>(тестовая форма загрузки массива изображений на сервер в папку images)</h5>--}}
 {{--     <form method="post" class="upload_img" enctype="multipart/form-data" action="/products/upload">--}}

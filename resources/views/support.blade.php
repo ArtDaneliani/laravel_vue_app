@@ -1,11 +1,11 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title')
     Поддержка
 @endsection()
 
 
-@section('main_content')
+@section('content')
     <h1>Поддержка</h1>
 
 @endsection()

@@ -3,33 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todos;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function index() {
-        $todos = new Todos();
-        $user = auth()->user();
-        $user_id = $user->id;
-        //передаем с модели все данные через обьект ТоДоС в шаблон (вьюшку)
-        //как в кодигнайтер - с контролера в массиве дата передаем массив $todos
-        $todoS = DB::select('select * from todos');
-        return view('todo.index', [
-            'todos'=>$todoS->all(),
-            'user_id'=>$user_id
-        ]);
-
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
-    //=========CRUD=========
-    public function addTodo(Request $request) {
+    public function index() {
+        $user_id = Auth::id();
+        if (Auth::check()) {
+            $todos = new Todos();
+            $todos = DB::table('todos')
+                ->select('title', 'done', 'user_id')
+                ->where('user_id', '=', $user_id)
+                ->get();
+
+            return view('todo.index', [
+                'todos' => $todos
+            ]);
+        }
+        return redirect()->route('home.index');
+    }
+
+     public function addTodo(Request $request) {
+        $valid = $request->validate([
+            'title' => 'required|min:15|max:500',
+        ]);
         $todo = new Todos();
-        $user = auth()->user();
-        $user_id = $user->id;
-        //left side = DB-fields name
-        //right side = key(from request user inputs) request
-        $todo->user_id = $request->input($user_id);
+        $user_id = Auth::id();
+        $todo->user_id = $user_id;
         $todo->title = $request->input('title');
         $todo->done = $request->input('done');
         $todo->image = $request->input('image');
@@ -37,14 +44,20 @@ class TodoController extends Controller
         //method save() is from parent Model
         $todo->save();
 
-        //redirect to reviews page
-        return view('todo.index');
+        //redirect to todos-list page
+        return redirect()->route('todo.index');
     }
+
     public function deleteTodo($id) {
         $todos = new Todos();
         DB::delete('delete from todos where id = ?',[$id]);
-        return view('todo.index', [
-            'todos'=>$todos->all()
-        ]);
+        $todos = DB::table('todos')
+                ->select('title', 'done', 'user_id')
+                ->where('user_id', '=', $id)
+                ->get();
+
+            return view('todo.index', [
+                'todos' => $todos
+            ]);
     }
 }

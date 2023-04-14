@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'MainController@index')->name('main.index');
-Route::get('/home', 'MainController@index')->name('main.index');
+Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/home', 'HomeController@index')->name('home.index');
+//Route::get('/home', 'MainController@index')->name('main.index');
 
 Route::get('/welcome', 'VueController@index')->name('welcome.index');
 
@@ -30,8 +31,8 @@ Route::delete('/products/{product}', 'ProductController@destroy')->name('product
 
 //Route::post('/products/upload', 'ProductController@image_upload')->name('product.upload');
 //Route::get('/products/delete', 'ProductController@deleteProducts');
-
 Route::get('/about', 'AboutController@index')->name('about.index');
+
 
 Route::get('/review', 'ReviewController@index')->name('review.index');
 Route::post('/review/check', 'ReviewController@review_check')->name('review.check');
@@ -42,12 +43,8 @@ Route::get('/support', 'SupportController@index')->name('support.index');
 
 //TODOs route==================
 Route::get('/todo', 'TodoController@index')->name('todo.index');
-Route::post('/todo', 'TodoController@addTodo')->name('todo.addTodo');
-Route::get('todo/{id}','TodoController@deleteTodo');
-//страница юзера с задачами
-Route::get('/todo/login', 'AuthController@getLogin')->name('user-login');
-//функционал логина/авторизации юзера
-Route::post('/todo/login', 'AuthController@authenticate');
+Route::post('/todo/list', 'TodoController@addTodo')->name('todo.list');
+Route::get('todo/{user_id}','TodoController@deleteTodo');
 //=============================
 
 
@@ -63,3 +60,11 @@ Route::get('/products/update', 'ProductController@updateOrCreate');*/
 //
 //})->name('login');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

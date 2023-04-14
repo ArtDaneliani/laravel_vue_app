@@ -1,8 +1,8 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')Про нас @endsection()
 
 
-@section('main_content')
+@section('content')
     <h1>О проекте</h1>
     <hr>
 

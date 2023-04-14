@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')Добавить продукт @endsection()
 
-@section('main_content')
+@section('content')
     <h1>Добавить продукт</h1>
     <form method="post" action="{{ route('product.store') }}">
         @csrf

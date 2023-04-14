@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title')Продукты @endsection()
 
-@section('main_content')
+@section('content')
     <h1>Карточка продукта</h1>
     <p><a href="{{ route('product.index') }}">Все продукты</a></p>
     <div class="container">

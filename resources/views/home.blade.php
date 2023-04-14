@@ -1,12 +1,31 @@
-@extends('layout')
-@section('title')Главная @endsection()
+@extends('layouts.app')
 
-@section('main_content')
+@section('content')
     <h1>Главная</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Accusamus amet consequatur dolores harum, inventore iure saepe totam.
-        Architecto dolorem iste,
-        libero nesciunt perferendis placeat quas rerum soluta sunt veniam, voluptas.
-    </p>
-    <home>
-@endsection()
+    <home/>
+@endsection
+{{--<div class="container">--}}
+{{--    <div class="row justify-content-center">--}}
+{{--        <div class="col-md-8">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-header">{{ __('Dashboard') }}</div>--}}
+
+{{--                <div class="card-body">--}}
+{{--                    @if (session('status'))--}}
+{{--                        <div class="alert alert-success" role="alert">--}}
+{{--                            {{ session('status') }}--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
+
+{{--                    {{ __('You are logged in!') }}--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+<script>
+    import Home from "../js/components/Home";
+    export default {
+        components: {Home}
+    }
+</script>
