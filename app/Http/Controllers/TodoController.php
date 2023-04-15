@@ -9,10 +9,13 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
+
+
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     public function index() {
         $user_id = Auth::id();
@@ -45,7 +48,9 @@ class TodoController extends Controller
         $todo->save();
 
         //redirect to todos-list page
-        return redirect()->route('todo.index');
+//        return redirect()->route('to do.index');
+//        return json_encode($todo);
+return "dssfsdfsdfsd";
     }
 
     public function deleteTodo($id) {

@@ -23,9 +23,5 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</div>--}}
-<script>
-    import Home from "../js/components/Home";
-    export default {
-        components: {Home}
-    }
-</script>
+
+

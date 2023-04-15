@@ -4,17 +4,19 @@
 @section('content')
     <h1>Список заданий</h1>
     <hr>
+{{--    <todo></todo>--}}
 
-    <todo>@csrf</todo>
-
-{{--        <textarea name="title"  rows="3" class="form-control" placeholder="Введите название и описание задания"></textarea><br>--}}
-{{--        <select name="done">--}}
-{{--            <option value=""></option>--}}
-{{--            <option value="1">Готово</option>--}}
-{{--            <option value="2">Не готово</option>--}}
-{{--        </select><br>--}}
-{{--        <input  class="form-control" name="image" type="text" placeholder="Загрузите картинку"/>--}}
-{{--        <button type="submit" name="add_task" class="btn btn-success">Добавить задание</button>--}}
+    <form id="To_Do" class="todo-add" action="#">
+        @csrf
+        <textarea name="title" v-model="title" rows="3" class="form-control" placeholder="Введите название и описание задания"></textarea><br>
+        <select v-model="done" name="done" class="form-control">
+            <option value="" selected>Статус</option>
+            <option value="1">Готово</option>
+            <option value="2">Не готово</option>
+        </select><br>
+        <input v-model="image" class="form-control" name="image" type="text" placeholder="Изображение"/><br>
+        <button  name="add_task" class="btn btn-success">Добавить задание</button>
+    </form>
 
     @if($todos)
         <h5>список заданий</h5>
@@ -31,3 +33,4 @@
 
     <hr>
 @endsection()
+
