@@ -43,8 +43,8 @@ Route::get('/support', 'SupportController@index')->name('support.index');
 
 //TODOs route==================
 Route::get('/todo', 'TodoController@index')->name('todo.index');
-Route::post('/todo/list', 'TodoController@addTodo')->name('todo.list');
-Route::get('todo/{user_id}','TodoController@deleteTodo');
+Route::post('/todo/list','TodoController@addTodo')->name('todo.list');
+Route::post('/todo/{id}','TodoController@editTodo')->name('todo.edit');
 //=============================
 
 

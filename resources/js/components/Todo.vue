@@ -19,6 +19,7 @@ export default {
     name: "Todo",
  /*   data() {
         return {
+            user_id: '',
             title: '',
             done: '',
             image: '',
