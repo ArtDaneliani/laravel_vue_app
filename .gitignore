@@ -2,10 +2,6 @@
 /public/hot
 /public/storage
 /storage/*.key
-
-/storage/framework/sessions
-/storage/framework/views
-
 /vendor
 .env
 .env.backup
@@ -18,3 +14,6 @@ yarn-error.log
 /.idea
 /.vscode
 /storage/logs/laravel.log
+/storage/framework/sessions
+/storage/framework/views
+/storage/app/public/images
