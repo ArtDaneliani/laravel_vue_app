@@ -3,7 +3,8 @@
 /public/storage
 /storage/*.key
 
-/storage/framework
+/storage/framework/sessions
+/storage/framework/views
 
 /vendor
 .env
