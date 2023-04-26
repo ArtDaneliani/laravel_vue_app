@@ -2,7 +2,7 @@
 @section('title')Продукты @endsection()
 
 @section('content')
-    <h1>Карточка продукта</h1>
+    <h1>Карточка товара</h1>
     <p><a href="{{ route('product.index') }}">Все продукты</a></p>
     <div class="container">
         <img class="card-pic" src="{{$product->image}}" alt="pic">

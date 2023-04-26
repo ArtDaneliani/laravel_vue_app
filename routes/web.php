@@ -49,9 +49,9 @@ Route::post('/todo/{id}','TodoController@editTodo')->name('todo.edit');
 
 
 
-/*Route::get('/products/delete', 'ProductController@deleteProducts');
-Route::get('/products/first', 'ProductController@firstOrCreate');
-Route::get('/products/update', 'ProductController@updateOrCreate');*/
+//Route::get('/products/delete', 'ProductController@deleteProducts');
+//Route::get('/products/first', 'ProductController@firstOrCreate')->name('products.create');
+//Route::get('/products/update', 'ProductController@updateOrCreate');
 
 //Route::get('/user/{id}/{name}', function($id, $name) {
 //    return 'ID: '.$id.'name: '.$name;

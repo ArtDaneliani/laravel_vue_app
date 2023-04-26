@@ -33,6 +33,7 @@ app.mount('#app')
 // const app1 = new Vue({
 //     el: '#app1',
 // });
+
 $('#image').change(function () {
     let reader = new FileReader();
     reader.onload = (e) => {
@@ -40,6 +41,13 @@ $('#image').change(function () {
     }
     reader.readAsDataURL(this.files[0]);
 });
+
+$(".tags").select2({
+    placeholder: 'Теги',
+    tags: true,
+    tokenSeparators: [',', ' ']
+})
+
 $('#To_Do').on('submit', function (e) {
     e.preventDefault();
     $.ajaxSetup({
@@ -47,8 +55,15 @@ $('#To_Do').on('submit', function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    var tags = $(".tags").val()
+
     var form = $(this)[0];
     var $form = new FormData(form);
+
+    $form.append('tags', tags);
+
+    //console.log($form);
+
     // var $form = $(this).serialize();
     $.ajax({
         url: '/todo/list',
@@ -58,16 +73,24 @@ $('#To_Do').on('submit', function (e) {
         processData: false,
         contentType: false,
         success: function (data) {
+            //console.log(data)
+            var tags = data.tags.split(',');
             $('#preview_image').attr('src', '');
             document.querySelector('#To_Do').reset()
+
             $('#todo_list').append('<tr class="item-todo">' +
                 '<td>' + data.user_id + '</td>' +
                 '<td>' +
-                '<a target="_blank" href="' + data.path + '/storage/images/origin/' + data.image + '">' +
-                '<img alt="thumb" class="thumbnail" src="/storage/images/thumbnail/' + data.image + '" style="height: 100%;width: auto;">' +
-                '</a>' +
+                ((data.image != 'no image') ? '<a target="_blank" href="' + data.path + '/storage/images/origin/' + data.image + '">' +
+                    '<img alt="thumb" class="thumbnail" src="/storage/images/thumbnail/' + data.image + '" style="height: 100%;width: auto;">' +
+                    '</a>' : '') +
                 '</td>' +
                 '<td>' + data.title + '</td>' +
+                '<td><div class="tags_wrapper">' +
+                $.each(tags, function (i, val) {
+                    '<span class="show_tags">' + val +'</span>'
+                }) +
+                '</div></td>' +
                 '<td>' + ((data.done == 1) ? 'Готово' : 'Не готово') + '</td>' +
                 '<td>' +
                 '<form class="form" method="post" action="#">' +
@@ -78,6 +101,11 @@ $('#To_Do').on('submit', function (e) {
                 '</form>' +
                 '</td>' +
                 '</tr>');
+            // $.each(tags, function (i, val) {
+            //     $('.tags_wrapper').addClass('dyn');
+            //     $('.dyn').append('<span class="show_tags">' + val +'</span>');
+            //     $('.tags_wrapper').removeClass('dyn');
+            // })
             var src = data.path + '/storage/images/origin/' + data.image;
             return src;
         },

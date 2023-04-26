@@ -13,4 +13,11 @@ class Todos extends Model
     public $timestamps = false;
     protected $table = 'todos';
     protected $guarded = false;
+
+
+    public function tags() {
+
+        return  $this->belongsToMany(TodoTags::class, 'todo_tags_ids', 'todo_id', 'tag_id');
+
+    }
 }

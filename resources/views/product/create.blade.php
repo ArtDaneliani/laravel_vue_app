@@ -47,7 +47,7 @@
                   class="form-control"
                   placeholder="Описание продукта">{{ old('description') }}</textarea>
         @error('description')
-        <p class="text-danger"> Добавьте изображение продукта (~image.jpg)</p>
+        <p class="text-danger"> Добавьте описание продукта</p>
         @enderror
         <br>
         <input value="{{ old('image') }}" class="form-control" id="image" name="image" type="text"
