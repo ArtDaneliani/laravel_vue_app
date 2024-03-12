@@ -1,3 +1,5 @@
+import {value} from "lodash/seq";
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -56,15 +58,9 @@ $('#To_Do').on('submit', function (e) {
         }
     });
     var tags = $(".tags").val()
-
     var form = $(this)[0];
     var $form = new FormData(form);
-
     $form.append('tags', tags);
-
-    //console.log($form);
-
-    // var $form = $(this).serialize();
     $.ajax({
         url: '/todo/list',
         type: 'POST',
@@ -96,8 +92,8 @@ $('#To_Do').on('submit', function (e) {
                 '<form class="form" method="post" action="#">' +
                 '<input  type="hidden" name="id" value="' + data.id + '"/>' +
                 '<input  type="hidden" name="image" value="' + data.image + '"/>' +
-                '<button type="submit" name="update_Todo"  class="editTodo">Изменить</button>&nbsp; ' +
-                '<button type="submit" name="delete_Todo"  class="editTodo">Удалить</button>' +
+                '<p><a  href="todo/' + data.id +  '/edit" class="btn btn-success">Изменить</a></p>' +
+                '<button type="submit" name="delete_Todo"  class="btn btn-danger editTodo">Удалить</button>' +
                 '</form>' +
                 '</td>' +
                 '</tr>');
@@ -115,6 +111,35 @@ $('#To_Do').on('submit', function (e) {
     });
 });
 
+$('#ToDo_update').on('submit', function () {
+    // e.preventDefault();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var tags = $(".tags").val()
+    var form = $(this)[0];
+    var $form = new FormData(form);
+    var $btn = $('#updBtn').attr("name");
+    $form.append('tags', tags)
+    $form.append($btn, $btn)
+    $.ajax({
+        url: '/todo/update',
+        type: 'POST',
+        data: $form,
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            // console.log(data)
+        },
+        error: function () {
+            console.log("error");
+        }
+    });
+});
+
 $(document).on('click touchstart', '.editTodo', function (e) {
     e.preventDefault();
     $.ajaxSetup({
@@ -125,7 +150,7 @@ $(document).on('click touchstart', '.editTodo', function (e) {
     var $form = $(this).parent('form').serialize();
     var $btn = $(this).attr("name");
     $.ajax({
-        url: '/todo/edit',
+        url: '/todo/delete',
         type: 'POST',
         data: $form + '&' + $btn,
         success: $(this).closest('.item-todo').remove()

@@ -2,9 +2,8 @@
 @section('title') ToDo @endsection()
 
 @section('content')
-    <h1>Список заданий</h1>
+    <h1>Создать задачу</h1>
     <hr>
-    {{--    <todo></todo>--}}
     <img id="preview_image" src="" alt="preview image" style="max-height: 150px;max-width: 150px;"/>
     <form id="To_Do" class="todo-add" enctype="multipart/form-data" action="#">
         @csrf
@@ -19,7 +18,6 @@
         </select><br>
 
         <select class="select2-multiple form-control tags"  multiple="multiple">
-
         </select>
         <br>
         <br>
@@ -28,9 +26,9 @@
     <br>
     <hr>
     <br>
-    @if($Todos)
-        <h5>список заданий</h5>
-    @endif
+
+
+    <h1>Список задач</h1>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -75,8 +73,8 @@
                             @csrf
                             <input type="hidden" name="id" value="{{$item->id}}"/>
                             <input type="hidden" name="image" value="{{$item->image}}"/>
-                            <button type="submit" name="update_Todo" class="editTodo">Изменить</button>&nbsp;
-                            <button type="submit" name="delete_Todo" class="editTodo">Удалить</button>
+                            <p><a class="btn btn-success" href="{{ route('todo.edit', $item->id) }}">Изменить</a></p>
+                            <button type="submit" name="delete_Todo" class="btn btn-danger editTodo">Удалить</button>
                         </form>
                     </div>
                 </td>
@@ -84,6 +82,5 @@
         @endforeach
         </tbody>
     </table>
-
 @endsection()
 

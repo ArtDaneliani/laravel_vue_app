@@ -44,7 +44,9 @@ Route::get('/support', 'SupportController@index')->name('support.index');
 //TODOs route==================
 Route::get('/todo', 'TodoController@index')->name('todo.index');
 Route::post('/todo/list','TodoController@addTodo')->name('todo.list');
-Route::post('/todo/{id}','TodoController@editTodo')->name('todo.edit');
+Route::get('/todo/{todo}/edit','TodoController@edit')->name('todo.edit');
+Route::post('/todo/update','TodoController@editTodo')->name('todo.update');
+Route::post('/todo/delete','TodoController@editTodo')->name('todo.delete');
 //=============================
 
 

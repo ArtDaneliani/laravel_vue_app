@@ -37,11 +37,12 @@ class TodoController extends Controller
 
     public function addTodo(Request $request)       //====---------create
     {
+        $validate = $request->validate([
+            'title' => 'required|min:10|max:1000',
+            'image' => 'image|nullable|max:1999',
+        ]);
 
-//        $validatedData = $request->validate([
-//            'image' => 'image|nullable|max:1999',
-//        ]);
-        if ($request->file('image')) {
+        if ($request->hasfile('image')) {
             $image = $request->file('image');
             $filename = $image->getClientOriginalName();
 
@@ -57,17 +58,17 @@ class TodoController extends Controller
 
         $todo = new Todos();
         $user_id = Auth::id();
+
         $todo->user_id = $_POST['user_id'];
         $todo->title = $_POST['title'];
         $todo->done = $_POST['done'];
         $todo->image = isset($fileName) ? $fileName : "no image";
         $todo->save();
 
-//--------------------------------------------]
+//----------------------TAGS----------------------]
         $todo->tags = $_POST['tags'];
         $tags = explode(",", $todo->tags);
         $arrtags = (array)$tags;
-
         foreach ($arrtags as $key => $tag) {
             $exist_tag = DB::table('todo_tags')->where('tag', $tag)->value('tag');
             if ($exist_tag != $tag) {
@@ -83,26 +84,56 @@ class TodoController extends Controller
             ]);
         }
 //--------------------------------------------]
+
         $todo->path = url('');
         return json_decode($todo);
     }
 
+    public function edit(Todos $todo)
+    {
+        $user_id = Auth::id();
+        $tags = TodoTags::all();
+        return view('todo.edit', compact('todo',  'tags', 'user_id'));
+    }
     public function editTodo(Request $request)          //====---------update --/-- delete
     {
         if (isset($_POST['update_Todo'])) {
-            echo('update');
-            $valid = $request->validate([
-                'title' => 'required|min:15|max:500',
-            ]);
+
+
+
             $todo = new Todos();
             $user_id = Auth::id();
-            $todo->id = $request->input('id');
+            $todo->id = $_POST['todo_id'];
             $todo->user_id = $user_id;
             $todo->title = $request->input('title');
             $todo->done = $request->input('done');
             $todo->image = $request->input('image');
             $todo->update();
+//----------------------TAGS----------------------]
+            $todo->tags = $_POST['tags'];
+            $tags = explode(",", $todo->tags);
+            $arrtags = (array)$tags;
+
+//            $todo->tags()->sync($arrtags);
+
+            DB::table('todo_tags_ids')->where('todo_id', '=', $todo->id)->delete();
+            foreach ($arrtags as $key => $tag) {
+                $exist_tag = DB::table('todo_tags')->where('tag', $tag)->value('tag');
+                if ($exist_tag != $tag) {
+                    $id = DB::table('todo_tags')->insertGetId([
+                        'tag' => $tag
+                    ]);
+                } else {
+                    $id = DB::table('todo_tags')->where('tag', $exist_tag)->value('id');
+                }
+                DB::table('todo_tags_ids')->insert([
+                    'tag_id' => $id,
+                    'todo_id' => $todo->id
+                ]);
+            }
             return json_decode($todo);
+//--------------------------------------------]
+//            return redirect()->route('todo.index');
         }
         if (isset($_POST['delete_Todo'])) {         //====---------удаление
             $todos = new Todos();
